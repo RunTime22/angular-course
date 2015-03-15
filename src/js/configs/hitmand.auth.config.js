@@ -3,6 +3,8 @@
   var session = {
     _key: 'Esis.Angular-Course.user.session',
     store: function(value) {
+      this.unstore();
+
       var res = false;
       try {
         window.sessionStorage.setItem(this._key, angular.toJson(value));
@@ -71,11 +73,9 @@
 
 
     $rootScope.$on('hitmands.auth:login.resolved', function(event, result) {
-      session.unstore();
       session.store(result.data);
     });
     $rootScope.$on('hitmands.auth:fetch.resolved', function(event, result) {
-      session.unstore();
       session.store(result.data);
     });
   }

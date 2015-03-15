@@ -1,13 +1,37 @@
 module.exports = function(grunt) {
   'use strict';
+
   require('jit-grunt')(grunt, {
     "ngtemplates" : "grunt-angular-templates"
   });
+
   var MODULE = 'esis.angular-course';
   var BUILD_DEST = './public/build/application.js';
   var BUILD_DEST_TPLS = './public/build/application.tpls.js';
   var BUILD_DEST_MIN = './public/build/application.min.js';
   var pkg = grunt.file.readJSON('package.json');
+  var _ngApp = [
+    './src/js/module.js',
+    './src/js/configs/**/*.js'
+  ];
+
+  var addModuleToNgApp = function(module, basePath) {
+    basePath = basePath || './src/js/';
+    var base = basePath + module + '/';
+
+    _ngApp.push(base + 'module.js');
+    _ngApp.push(base + '**/*Constant.js');
+    _ngApp.push(base + '**/*Config.js');
+    _ngApp.push(base + '**/*Provider.js');
+    _ngApp.push(base + '**/*Service.js');
+    _ngApp.push(base + '**/*Factory.js');
+    _ngApp.push(base + '**/*Value.js');
+    _ngApp.push(base + '**/*Filter.js');
+    _ngApp.push(base + '**/*Ctrl.js');
+    _ngApp.push(base + '**/*Directive.js');
+  };
+
+  addModuleToNgApp('store');
 
   var _banner = "/**!\n" +
     " * @Project: <%= pkg.name %>\n" +
@@ -113,10 +137,7 @@ module.exports = function(grunt) {
         },
         files: [
           {
-            src: [
-              './src/js/module.js',
-              './src/js/configs/**/*.js'
-            ],
+            src: _ngApp,
             dest: BUILD_DEST
           }
         ]
@@ -221,7 +242,6 @@ module.exports = function(grunt) {
   grunt.registerTask('stylesheets',
     [
       'newer:libsass:stylesheets'
-
     ]
   );
 
