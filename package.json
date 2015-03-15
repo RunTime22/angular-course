@@ -1,0 +1,40 @@
+{
+  "name": "angular-course",
+  "version": "1.0.0",
+  "description": "A Course for AngularJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hitmands/angular-course"
+  },
+  "keywords": [
+    "AngularJs",
+    "Training",
+    "Esis"
+  ],
+  "authors": [
+    "Hitmands <gius.mand.developer@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hitmands/angular-course/issues"
+  },
+  "homepage": "https://github.com/hitmands/angular-course",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.12.0",
+    "grunt": "~0.4.2",
+    "grunt-angular-templates": "^0.5.7",
+    "grunt-contrib-htmlmin": "^0.4.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.6.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-libsass": "^0.2.0",
+    "grunt-newer": "~0.8.0",
+    "grunt-ng-annotate": "~0.4.0",
+    "jit-grunt": "~0.9.0"
+  }
+}
