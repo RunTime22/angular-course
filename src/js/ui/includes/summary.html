@@ -1,0 +1,492 @@
+<div class="row ">
+    <div class="col-xs-12">
+        <h4>Summary</h4>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Module</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        angular.module('moduleName', [ 'dependency', 'dependency2' ]);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        angular.module('moduleName');
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name, [requires], [configFn]);
+                </code>
+                <p>
+                    <strong>requires</strong>, Property that holds the list of modules which the injector will load before the current module is loaded. <br/>
+                    <strong>name</strong>, The name of the module.
+                </p>
+                <p>
+                    The angular.module is a global place for creating, registering and retrieving Angular modules. All modules (angular core or 3rd party) that should be available to an application must be registered using this mechanism...
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/ng/function/angular.module">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Constant</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        constant('name', object);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        Dependency Injection
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).constant('constName', {...});
+                </code>
+                <p>
+                    Register a constant service, such as a string, a number, an array, an object or a function, with the $injector. Unlike value it can be injected into a module configuration function (see angular.Module) and it cannot be overridden by an Angular decorator.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/auto/service/$provide#constant">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Value</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        value('name', value);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        Dependency Injection
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).value('valueName', {...});
+                </code>
+                <p>
+                    Register a value service with the $injector, such as a string, a number, an array, an object or a function. This is short for registering a service where its provider's $get property is a factory function that takes no arguments and returns the value service.<br />
+                    Value services are similar to constant services, except that they cannot be injected into a module configuration function (see angular.Module) but they can be overridden by an Angular decorator.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/auto/service/$provide#value">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Service</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        service(name, constructor);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        Dependency Injection
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).service(name, constructor);
+                </code>
+                <p>
+                    Register a service constructor, which will be invoked with new to create the service instance. This is short for registering a service where its provider's $get property is the service constructor function that will be used to instantiate the service instance.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/auto/service/$provide#service">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Provider</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        provider(name, constructor);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        Dependency Injection
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).provider(name, constructor);
+                </code>
+                <p>
+                    Register a provider function with the $injector. Provider functions are constructor functions, whose instances are responsible for "providing" a factory for a service. <br/>
+
+                    Service provider names start with the name of the service they provide followed by Provider. For example, the $log service has a provider called $logProvider.<br/>
+
+                    Service provider objects can have additional methods which allow configuration of the provider and its service. Importantly, you can configure what kind of service is created by the $get method, or how that service will act. For example, the $logProvider has a method debugEnabled which lets you specify whether the $log service will log debug messages to the console or not.<br/>
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/auto/service/$provide#provider">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Factory</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        factory(name, $getFn);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        Dependency Injection
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).factory(name, $getFn);
+                </code>
+                <p>
+                    Register a service factory, which will be called to return the service instance. This is short for registering a service where its provider consists of only a $get property, which is the given service factory function. You should use $provide.factory(getFn) if you do not need to configure your service in a provider.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/auto/service/$provide#factory">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Filter</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        filter(name, filterFactory);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        Dependency Injection
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).filter(name, filterFactory);
+                </code>
+                <p>
+                    Filters are just functions which transform input to an output. However filters need to be Dependency Injected. To achieve this a filter definition consists of a factory function which is annotated with dependencies and is responsible for creating a filter function.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/ng/provider/$filterProvider#register">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Controller</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        controller(name, constructor);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        Dependency Injection
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).controller(name, constructor);
+                </code>
+                <p>
+                    In Angular, a Controller is a JavaScript constructor function that is used to augment the Angular Scope. <br/>
+
+                    When a Controller is attached to the DOM via the ng-controller directive, Angular will instantiate a new Controller object, using the specified Controller's constructor function. A new child scope will be available as an injectable parameter to the Controller's constructor function as $scope.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/guide/controller">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Directive</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        directive(nameAsCamelCase, directiveFactory);
+                    </code>
+                </div>
+                <div class="">
+                    <div class="small">Getter</div>
+                    <code>
+                        &#x3C;my-dir&#x3E;&#x3C;/my-dir&#x3E; <br/>
+                        &#x3C;span my-dir=&#x22;exp&#x22;&#x3E;&#x3C;/span&#x3E; <br/>
+                        &#x3C;!-- directive: my-dir exp --&#x3E; <br/>
+                        &#x3C;span class=&#x22;my-dir: exp;&#x22;&#x3E;&#x3C;/span&#x3E; <br/>
+                    </code>
+
+                    <p>
+                        Angular normalizes an element's tag and attribute name to determine which elements match which directives. We typically refer to directives by their case-sensitive camelCase normalized name (e.g. ngModel). However, since HTML is case-insensitive, we refer to directives in the DOM by lower-case forms, typically using dash-delimited attributes on DOM elements (e.g. ng-model).
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).directive(name, directiveFactory);
+                </code>
+                <p>
+                    At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element or even transform the DOM element and its children.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/guide/directive">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Config</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        config(fn);
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).config(fn);
+                </code>
+                <p>
+                    During application bootstrap, before Angular goes off creating all services, it configures and instantiates all providers. We call this the configuration phase of the application life-cycle. During this phase, services aren't accessible because they haven't been created yet.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/ng/type/angular.Module#config">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Run</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <div class="small">Setter</div>
+                    <code>
+                        run(fn);
+                    </code>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="small">Usage</div>
+                <code>
+                    angular.module(name).run(fn);
+                </code>
+                <p>
+                    Get executed after the injector is created and are used to kickstart the application. Only instances and constants can be injected into run blocks. This is to prevent further system configuration during application run time.
+                </p>
+                <a class="resource" target="new" href="https://docs.angularjs.org/api/ng/type/angular.Module#run">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h6>Dependency Injection And Annotations</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p>
+                    <strong>Dependency Injection (DI)</strong> is a software design pattern that deals with how components get hold of their dependencies. <br/>
+                    The Angular injector subsystem is in charge of creating components, resolving their dependencies, and providing them to other components as requested.
+                </p>
+                <code>
+                    angular.module(name, ['dep', ...]); <br/> <br/>
+                    angular.controller(name, function($scope, $http) { <br/>
+                    // $scope and $http is a <strong>resolved dependency</strong>; <br/>
+                    }); <br/> <br/>
+                    angular.element(document.body).injector()
+                </code>
+                <a class="resource" target="new" href="https://docs.angularjs.org/guide/di">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p>
+                    <strong>Dependency Annotation.</strong> Angular invokes certain functions (like service factories and controllers) via the injector. You need to annotate these functions so that the injector knows what services to inject into the function. There are three ways of annotating your code with service name information:
+                </p>
+                <ul>
+                    <li>
+                        Using the inline array annotation (preferred)
+                    </li>
+                    <li>
+                        Using the $inject property annotation
+                    </li>
+                    <li>
+                        Implicitly from the function parameter names (has caveats)
+                    </li>
+                </ul>
+                <code>
+                    someModule.controller('MyController', ['$scope', 'greeter', function(a, b) { <br/>
+                        // $scope is a <br/>
+                        // greeter is b <br/>
+                    }]); <br/><br/>
+                    var MyController = function($scope, greeter) {}<br/>
+                    MyController.$inject = ['$scope', 'greeter'];<br/>
+                    someModule.controller('MyController', MyController); <br/><br/>
+                    someModule.controller('MyController', function($scope, greeter) { <br/>
+                        // <strong>This breaks the DI with the Function Mangling</strong> <br/>
+                    }); <br/>
+                </code>
+                <a class="resource" target="new" href="https://docs.angularjs.org/guide/di">
+                    AngularJS Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

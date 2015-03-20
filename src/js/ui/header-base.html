@@ -1,0 +1,23 @@
+<div class="nav-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Esis Angular Course</a>
+            </div>
+
+            <div class="" >
+                <ul class="nav navbar-nav navbar-right" ng-switch="isUserLoggedIn">
+                    <li ng-switch-when="true">
+                        <p class="navbar-text"><small>Howdy</small>, {{ currentUser.firstName }}</p>
+                    </li>
+                    <li ng-switch-when="true">
+                        <button type="button" auth-logout class="btn btn-warning navbar-btn">Logout</button>
+                    </li>
+                    <li ng-switch-when="false">
+                        <a ui-sref="app.users.login" class="btn btn-info navbar-btn ">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

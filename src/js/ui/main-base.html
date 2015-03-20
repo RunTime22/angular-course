@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="page-header">
+            <h1>
+                <img class="esis-logo" ng-src="{{ esisLogo }}" alt=""/>
+            </h1>
+        </div>
+
+        <p>
+            A course based on <a href="https://angularjs.org/">AngularJS</a> framework.
+        </p>
+    </div>
+</div>
+
+
+<div class="space-20"></div>
+<div class="row">
+    <div class="col-xs-12" id="{{ apiSectionId }}">
+        <apilist></apilist>
+    </div>
+</div>
+
+<div class="space-20"></div>
+
+<section class="summary" ng-include="summary" id="{{ summarySectionId }}">
+
+</section>

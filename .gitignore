@@ -28,3 +28,6 @@ dump.rdb
 /src/vendor
 /sample
 /server.js
+
+backend/modules/users/data/**
+!backend/modules/users/data/hitmands.json

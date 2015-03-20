@@ -1,0 +1,52 @@
+<div class="space-50"></div>
+<div class="row" ng-hide="isUserLoggedIn">
+    <div class="col-xs-11">
+        <form class="" name="loginForm" auth-login="credentials" auth-login-on-resolve="onLoginDone" auth-login-on-reject="onLoginFail">
+            <fieldset>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <legend>Login</legend>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-6">
+                        <div class="">
+                            <label for="username">Username</label>
+                            <input required class="form-control" type="text" ng-model="credentials.username" id="username"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="">
+                            <label for="password">Password</label>
+                            <input required class="form-control" type="password" ng-model="credentials.password" id="password"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-9 col-xs-7">
+                        <div class="">
+                            <input class="" type="checkbox" ng-model="credentials.rememberMe" id="rememberMe"/>
+                            <label for="rememberMe">Remember Me</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-5">
+                        <button type="submit" class="btn btn-block btn-xs btn-primary">Login</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <div class="h2 text-center" ng-show="formState == 2">
+            Invalid Credentials
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="isUserLoggedIn">
+    <div class="col-xs-12">
+        <h1>Howdy, <span ng-bind="currentUser.firstName"></span>&nbsp;<span ng-bind="currentUser.lastName"></span></h1>
+        <p>You're already Logged In.</p>
+        <p>
+            <button class="btn btn-sm btn-warning" auth-logout>Logout</button>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<table class="table table-striped table-hover table-condensed apilist-table">
+    <thead>
+        <tr>
+            <th class="t-route">Api Docs</th>
+            <th class="t-method">Method</th>
+            <th class="t-params">Payload</th>
+            <th class="t-returns">Returns</th>
+            <th class="t-claims">Claims</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="api in endpoints">
+            <td class="t-route">
+                <div class="small">
+                    <strong ng-bind="api.route"></strong>
+                </div>
+                <div class="small" ng-bind-html="api.description" ng-show="api.description.length > 1"></div>
+            </td>
+            <td class="t-method">
+               <strong class="" ng-bind="api.method | uppercase"></strong>
+            </td>
+            <td class="t-params">
+               <code ng-bind="api.payload | json" ng-show="api.payload"></code>
+            </td>
+            <td class="t-returns">
+                <div ng-bind="api.returns"></div>
+            </td>
+            <td class="t-claims">
+                <small class="text-capitalize" ng-bind="api.claims.join(', ')"></small>
+            </td>
+        </tr>
+    </tbody>
+</table>

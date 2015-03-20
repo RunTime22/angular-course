@@ -7,7 +7,7 @@ var ROLES = {
 };
 var TOKEN_BASE = 'Esis.Angular-Course.user.session:';
 
-module.exports = function(app, isUserLoggedIn) {
+module.exports = function(app, requireAuthentication) {
 
   app
 
@@ -15,6 +15,27 @@ module.exports = function(app, isUserLoggedIn) {
       return res.status(200).send(null);
     })
 
+    .get('/api/v1/users/:username', function(req, res, next) {
+      var username = req.params.username;
+      var user;
+
+      if(!username) {
+        res.status(400).send(null);
+        return;
+      }
+      try {
+        user = JSON.parse(
+          fs.readFileSync(__dirname + '/data/' + username + '.json', 'utf8')
+        );
+      } catch(e) {}
+
+      if(!user) {
+        res.status(404).send(null);
+        return;
+      }
+
+      res.status(200).json(user);
+    })
     .post('/api/v1/users/login', function(req, res, next) {
       var user;
       var credentials = req.body;
@@ -23,10 +44,7 @@ module.exports = function(app, isUserLoggedIn) {
         user = JSON.parse(
           fs.readFileSync(__dirname + '/data/' + credentials.username + '.json', 'utf8')
         );
-      } catch(e) {
-        console.log('/api/v1/users/login:CATCH');
-        console.log(e);
-      }
+      } catch(e) {}
 
       if(!user || (credentials.password !== user.password)) {
         return res.status(401).send(null);
@@ -39,6 +57,20 @@ module.exports = function(app, isUserLoggedIn) {
       });
     })
 
+    .get('/api/v1/users', function(req, res, next) {
+      var users = [];
+
+      try {
+        users = fs.readdirSync(__dirname + '/data/');
+      } catch(e) {}
+
+      for(var i = 0; i < users.length; i++) {
+        users[i] = users[i].replace('.json', '');
+      }
+
+      var code = users.length > 1 ? 200 : 204;
+      res.status(code).json(users)
+    })
     .get('/api/v1/users/current', function(req, res, next) {
       var username = req.headers['x-auth-token'];
       var user;
@@ -57,7 +89,7 @@ module.exports = function(app, isUserLoggedIn) {
       }
 
       if(!user) {
-        return res.status(400).send();
+        return res.status(400).send(null);
       }
 
       return res.status(200).send({
@@ -68,7 +100,7 @@ module.exports = function(app, isUserLoggedIn) {
 
     })
 
-    .delete('/api/v1/users/:username', isUserLoggedIn, function(req, res, next) {
+    .delete('/api/v1/users/:username', requireAuthentication, function(req, res, next) {
       var result;
 
       if(req.params.username === 'hitmands') {
@@ -87,14 +119,14 @@ module.exports = function(app, isUserLoggedIn) {
       return res.status(200).send();
     })
 
-    .post('/api/v1/users/:username', function(req, res, next) {
+    .post('/api/v1/users/', function(req, res, next) {
       var username;
       var path;
       var userdata = req.body;
       var result;
 
       try{
-        username = req.params.username;
+        username = req.body.username;
       } catch(e) {}
 
       if(!username) {
@@ -115,6 +147,6 @@ module.exports = function(app, isUserLoggedIn) {
         return res.status(500).send('Something went wrong, cannot create user: ' + username);
       }
 
-      return res.status(201).send(null);
+      return res.status(201).json(userdata);
     });
 };

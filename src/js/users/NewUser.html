@@ -1,0 +1,86 @@
+<div class="space-50"></div>
+<div class="row" ng-switch="user.formState">
+    <div class="col-xs-11">
+
+        <div class="" ng-switch-when="1">
+            <h3 class="text-center">
+                User Created.
+            </h3>
+        </div>
+
+        <div class="" ng-switch-when="2">
+            <h3 class="text-center ">
+                <p>
+                    Cannot create user, check fields.
+                </p>
+                <div class="space-5"></div>
+                <p>
+                    <button class="btn btn-default" ng-click="user.formState = 0;">Check Fields</button>
+                </p>
+            </h3>
+        </div>
+
+        <form ng-switch-when="0" class="form" name="newUser" ng-submit="user.create($event, newUser)" novalidate autocomplete="off">
+            <div class="col-xs-12">
+                <fieldset>
+                    <legend>
+                        <div class="clearfix">
+                            <span>New User</span>
+                            <button type="submit" class="btn btn-primary  pull-right">Submit</button>
+                        </div>
+                    </legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input required class="form-control" type="text" ng-model="user.fields.firstName" id="firstName"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input required class="form-control" type="text" ng-model="user.fields.lastName" id="lastName"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input required class="form-control" type="email" ng-model="user.fields.email" id="email"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input required class="form-control" type="text" ng-model="user.fields.username" id="username"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input required class="form-control" type="password" ng-model="user.fields.password" id="password"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input required class="form-control" type="text" ng-model="user.fields.country" id="country"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select required class="form-control" ng-model="user.fields.role" id="role" ng-options="r for r in user.roles" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="clearfix">
+    <hr/>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <h1 class="h5">
+                <a ng-href="{{ esisLink }}" target="new" ng-switch="$state.current.name === 'app.index'">
+                    <img class="esis-logo" ng-src="{{ esisLogo }}" alt="Esis S.r.l " ng-switch-when="false"/>
+                    <span ng-switch-when="true">Esis S.r.L</span>
+                </a>
+            </h1>
+
+            <p>
+                <strong ng-bind="courseName"></strong> - <a ng-href="{{ trainerLink }}" ng-bind="trainer" target="new"></a>
+            </p>
+
+        </div>
+    </div>
+</div>

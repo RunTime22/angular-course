@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
   var MODULE = 'esis.angular-course';
   var BUILD_DEST = './public/build/application.js';
-  var BUILD_DEST_TPLS = './public/build/application.tpls.js';
+  var BUILD_DEST_TPLS = './public/build/application.tpls.min.js';
   var BUILD_DEST_MIN = './public/build/application.min.js';
   var pkg = grunt.file.readJSON('package.json');
   var _ngApp = [
@@ -31,7 +31,10 @@ module.exports = function(grunt) {
     _ngApp.push(base + '**/*Directive.js');
   };
 
-  addModuleToNgApp('store');
+  addModuleToNgApp('ui');
+  addModuleToNgApp('errors');
+  addModuleToNgApp('users');
+  addModuleToNgApp('api');
 
   var _banner = "/**!\n" +
     " * @Project: <%= pkg.name %>\n" +
@@ -80,7 +83,7 @@ module.exports = function(grunt) {
     },
 
     ngtemplates: {
-      sample: {
+      views: {
         options: {
           module: MODULE,
           htmlmin: {
@@ -94,7 +97,7 @@ module.exports = function(grunt) {
             removeStyleLinkTypeAttributes:  true
           },
           url: function(url) {
-            url = url.replace('./sample', '');
+            url = url.replace('./src/js', '/partials');
             return url;
           }
         },
@@ -251,7 +254,9 @@ module.exports = function(grunt) {
       'uglify:development',
       'ngAnnotate:modules',
       'uglify:production',
-      'concat:bannerize'
+      'libsass:stylesheets',
+      'concat:bannerize',
+      'ngtemplates:views'
     ]
   );
 };
