@@ -7,15 +7,55 @@ var ROLES = {
 };
 var TOKEN_BASE = 'Esis.Angular-Course.user.session:';
 
+var authorize = function(needle, user, res) {
+  var haystack = user ? (user.authLevel || []) : [];
+
+  for(var i = 0; i < haystack.length; i++) {
+    if(haystack[i] === needle) {
+      console.log('AUTHORIZED FOR ROLE ', needle);
+      return true;
+    }
+  }
+
+  res.status(403).end();
+  return false;
+};
+
 module.exports = function(app, requireAuthentication) {
 
   app
+    .use(function(req, res, next) {
+      var token = req.headers['x-auth-token'];
+      var user;
+
+      try {
+        token = token.split(TOKEN_BASE).pop();
+        user = JSON.parse(
+          fs.readFileSync(__dirname + '/data/' + token + '.json', 'utf8')
+        );
+      } catch(e) {
+        user = void(0);
+      }
+
+      if(user) {
+        user.authLevel = ROLES[user.role];
+        req.user = user;
+      }
+
+      return next();
+    })
 
     .post('/api/v1/users/logout', function(req, res, next) {
       return res.status(200).send(null);
     })
 
     .get('/api/v1/users/:username', function(req, res, next) {
+
+      if(!authorize('manager', req.user, res)) {
+        return;
+      }
+
+
       var username = req.params.username;
       var user;
 
@@ -58,6 +98,9 @@ module.exports = function(app, requireAuthentication) {
     })
 
     .get('/api/v1/users', function(req, res, next) {
+      if(!authorize('manager', req.user, res)) {
+        return;
+      }
       var users = [];
 
       try {
@@ -102,6 +145,10 @@ module.exports = function(app, requireAuthentication) {
 
     .delete('/api/v1/users/:username', requireAuthentication, function(req, res, next) {
       var result;
+
+      if(!authorize('customer', req.user, res)) {
+        return;
+      }
 
       if(req.params.username === 'hitmands') {
         return res.status(403).send('Operation Not Permitted');

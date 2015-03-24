@@ -21,7 +21,7 @@
       var configs = {};
 
       return $http
-        .post('/api/v1/users/' + fields.username, fields, configs)
+        .post('/api/v1/users/', fields, configs)
         .then(
         function(result) {
 

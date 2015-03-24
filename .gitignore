@@ -31,3 +31,6 @@ dump.rdb
 
 backend/modules/users/data/**
 !backend/modules/users/data/hitmands.json
+
+backend/modules/store/data
+!backend/modules/users/data/1.json

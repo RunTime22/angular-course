@@ -1,3 +1,18 @@
+/**!
+ * @Project: angular-course
+ * @Authors: Hitmands <gius.mand.developer@gmail.com>
+ * @Link: https://github.com/hitmands/angular-course
+ * @License: MIT
+ * @Date: 2015-03-24
+ * @Version: 1.0.0
+ * 
+ * @ngdoc: module
+ * @namespace: esis
+ * @name: angular-course
+ * @module: esis.angular-course
+ * @description: Course on AngularJS.
+***/
+
 (function(window, angular) {
    'use strict';
 
@@ -231,7 +246,7 @@
          var self = this;
          self.create = function(fields) {
             var configs = {};
-            return $http.post("/api/v1/users/" + fields.username, fields, configs).then(function(result) {
+            return $http.post("/api/v1/users/", fields, configs).then(function(result) {
                return new User(result.data);
             }, function(error) {
                return $q.reject(error);

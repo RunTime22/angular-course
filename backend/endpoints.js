@@ -15,7 +15,7 @@ function isUserLoggedIn(req, res, next) {
 }
 
 module.exports = function(app) {
-  require('./modules/users/routes')(app, isUserLoggedIn );
   require('./modules/api/routes')(app);
-
+  require('./modules/users/routes')(app, isUserLoggedIn );
+  require('./modules/store/routes')(app, isUserLoggedIn );
 };
