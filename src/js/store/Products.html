@@ -38,16 +38,15 @@
 
 
             <div class="products-list flex-container">
-                <div class="thumbnail product flex-item" ng-repeat="item in product.list | filter:query | orderBy:currentFilter track by $index" id="product-{{ item.id }}">
+                <div class="thumbnail product flex-item" ng-repeat="item in product.list | filter:query | orderBy:currentOrderProp track by $index" id="product-{{ item.id }}">
                     <img ng-src="{{ item.thumbnail }}" alt="{{ item.name }}">
                     <div class="caption">
-                        <h3 ng-bind="item.name"></h3>
+                        <h3 class="text-center" ng-bind="item.name"></h3>
                         <p>
-                            <strong>category:</strong>&nbsp;<span ng-bind="item.categories.join(', ');"></span><br/>
-
+                            <strong>category:</strong>&nbsp;<span ng-bind="item.categories.join(', ');"></span>
                         </p>
-                        <p class="text-right">
-                            <button ng-click="product.addToCart($event, item)" class="btn btn-primary" type="button"><small>Add To Cart:</small>
+                        <p class="">
+                            <button ng-click="product.addToCart($event, item)" class="btn btn-sm btn-block btn-primary" type="button"><small>Add To Cart:</small>
                                 {{ item.price | currency }}</button>
                         </p>
                     </div>
