@@ -34,6 +34,7 @@ module.exports = function(grunt) {
   addModuleToNgApp('ui');
   addModuleToNgApp('errors');
   addModuleToNgApp('users');
+  addModuleToNgApp('store');
   addModuleToNgApp('api');
 
   var _banner = "/**!\n" +

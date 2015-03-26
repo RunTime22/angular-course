@@ -22,7 +22,7 @@
          window.$injector = $injector.get;
       }
       EsisAngularCourseRun.$inject = ['$rootScope', '$state', '$stateParams', 'AuthService', '$http', '$injector'];
-      var dependencies = [ "esis.angular-course.ui", "esis.angular-course.errors", "esis.angular-course.users", "esis.angular-course.api", "ui.router", "hitmands.auth", "ngSanitize" ];
+      var dependencies = [ "esis.angular-course.ui", "esis.angular-course.errors", "esis.angular-course.users", "esis.angular-course.store", "esis.angular-course.api", "ui.router", "hitmands.auth", "ngSanitize" ];
       angular.module("esis.angular-course", dependencies).config(EsisAngularCourseConfig).run(EsisAngularCourseRun);
    }).call(this);
 
@@ -179,7 +179,7 @@
       /* @ngInject */
       function ErrorRun($rootScope) {}
       ErrorRun.$inject = ['$rootScope'];
-      var dependencies = [];
+      var dependencies = [ "esis.angular-course" ];
       angular.module("esis.angular-course.errors", dependencies).config(ErrorConfig).run(ErrorRun);
    }).call(this);
 
@@ -215,7 +215,7 @@
       /* @ngInject */
       function EsisAngularCourseUsersRun($rootScope) {}
       EsisAngularCourseUsersRun.$inject = ['$rootScope'];
-      var dependencies = [ "hitmands.auth" ], esisAngularCourseUsersConstant = {};
+      var dependencies = [ "hitmands.auth", "esis.angular-course" ], esisAngularCourseUsersConstant = {};
       esisAngularCourseUsersConstant.ROLES = {
          "public": [ "public" ],
          "customer": [ "public", "customer" ],
@@ -251,6 +251,28 @@
          return User;
       }.call(this);
       angular.module("esis.angular-course.users").service("UserService", UserServiceFactory);
+   }).call(this);
+
+   (function() {
+      /* @ngInject */
+      function DeleteUserConfig($stateProvider) {
+         var section = {
+            "name": "app.users.delete",
+            "url": "delete/",
+            "data": {},
+            "views": {
+               "main@": {
+                  "templateUrl": "partials/users/DeleteUser.html",
+                  "controller": "DeleteUserCtrl"
+               }
+            }
+         };
+         $stateProvider.state(section);
+      }
+      DeleteUserConfig.$inject = ['$stateProvider'];
+      /* @ngInject */
+      function DeleteUserCtrl() {}
+      angular.module("esis.angular-course.users").config(DeleteUserConfig).controller("DeleteUserCtrl", DeleteUserCtrl);
    }).call(this);
 
    (function() {
@@ -352,11 +374,178 @@
 
    (function() {
       /* @ngInject */
+      function UsersListConfig($stateProvider) {
+         var section = {
+            "name": "app.users.list",
+            "url": "list/",
+            "data": {},
+            "views": {
+               "main@": {
+                  "templateUrl": "partials/users/UsersList.html",
+                  "controller": "UsersListCtrl"
+               }
+            }
+         };
+         $stateProvider.state(section);
+      }
+      UsersListConfig.$inject = ['$stateProvider'];
+      /* @ngInject */
+      function UsersListCtrl() {}
+      angular.module("esis.angular-course").config(UsersListConfig).controller("UsersListCtrl", UsersListCtrl);
+   }).call(this);
+
+   (function() {
+      /* @ngInject */
+      function StoreConfig($stateProvider) {
+         var section = {
+            "name": "app.store",
+            "url": "store/",
+            "abstract": !0,
+            "data": {}
+         };
+         $stateProvider.state(section);
+      }
+      StoreConfig.$inject = ['$stateProvider'];
+      /* @ngInject */
+      function StoreRun() {}
+      var dependencies = [ "esis.angular-course", "ui.router" ];
+      angular.module("esis.angular-course.store", dependencies).config(StoreConfig).run(StoreRun);
+   }).call(this);
+
+   (function() {
+      /* @ngInject */
+      function StoreServiceFactory($q, $http) {
+         var self = this;
+         self.loadProducts = function StoreServiceLoadProducts() {
+            return $http.get(ENDPOINT + "products").then(function(result) {
+               return result.data || [];
+            }, function(rejection) {
+               return $q.reject(rejection);
+            });
+         };
+         self.loadCategories = function StoreServiceLoadCategories() {
+            return $http.get(ENDPOINT + "categories").then(function(result) {
+               return result.data || [];
+            }, function(rejection) {
+               return $q.reject(rejection);
+            });
+         };
+         self.loadOrders = function StoreServiceLoadOrders() {
+            return $http.get(ENDPOINT + "orders").then(function(result) {
+               return result.data || [];
+            }, function(rejection) {
+               return $q.reject(rejection);
+            });
+         };
+      }
+      StoreServiceFactory.$inject = ['$q', '$http'];
+      var ENDPOINT = "/api/v1/store/";
+      angular.module("esis.angular-course.store").service("StoreService", StoreServiceFactory);
+   }).call(this);
+
+   (function() {
+      /* @ngInject */
+      function CartConfig($stateProvider) {
+         var section = {
+            "name": "app.store.cart",
+            "url": "cart/",
+            "data": {},
+            "views": {
+               "main@": {
+                  "templateUrl": "partials/store/Cart.html",
+                  "controller": "CartCtrl"
+               }
+            }
+         };
+         $stateProvider.state(section);
+      }
+      CartConfig.$inject = ['$stateProvider'];
+      /* @ngInject */
+      function CartCtrl() {}
+      angular.module("esis.angular-course.store").config(CartConfig).controller("CartCtrl", CartCtrl);
+   }).call(this);
+
+   (function() {
+      /* @ngInject */
+      function OrdersConfig($stateProvider) {
+         var section = {
+            "name": "app.store.orders",
+            "url": "orders/",
+            "data": {},
+            "views": {
+               "main@": {
+                  "templateUrl": "partials/store/Orders.html",
+                  "controller": "OrdersCtrl"
+               }
+            }
+         };
+         $stateProvider.state(section);
+      }
+      OrdersConfig.$inject = ['$stateProvider'];
+      /* @ngInject */
+      function OrdersCtrl() {}
+      angular.module("esis.angular-course.store").config(OrdersConfig).controller("OrdersCtrl", OrdersCtrl);
+   }).call(this);
+
+   (function() {
+      /* @ngInject */
+      function OrdersConfig($stateProvider) {
+         var page = {
+            "name": "app.store.index",
+            "url": "",
+            "views": {
+               "main@": {
+                  "controllerAs": "product",
+                  "templateUrl": "partials/store/Products.html",
+                  "controller": "OrdersCtrl"
+               }
+            }
+         };
+         $stateProvider.state(page);
+      }
+      OrdersConfig.$inject = ['$stateProvider'];
+      /* @ngInject */
+      function OrdersCtrl($scope, StoreService) {
+         var vm = this;
+         StoreService.loadProducts().then(function(products) {
+            console.log("Products Loaded: ", products);
+            vm.list = products;
+            try {
+               $scope.orderProps = Object.keys(products[0]);
+            } catch (e) {}
+         }, function(error) {
+            console.log("Products NOT Loaded", error);
+         });
+         StoreService.loadCategories().then(function(categories) {
+            console.log("Categories Loaded: ", categories);
+            vm.categories = categories;
+         }, function(error) {
+            console.log("Categories NOT Loaded", error);
+         });
+         vm.addToCart = function(event, product) {};
+         $scope.query = "";
+         $scope.onQueryChange = function(event) {
+            console.log("filtering elements by keyword: ", $scope.query);
+         };
+         $scope.currentOrderProp = null;
+         $scope.setOrderProp = function(event, prop) {
+            $scope.currentOrderProp = prop;
+         };
+         $scope.resetOrderProp = function(event) {
+            $scope.currentOrderProp = null;
+         };
+      }
+      OrdersCtrl.$inject = ['$scope', 'StoreService'];
+      angular.module("esis.angular-course.store").config(OrdersConfig).controller("OrdersCtrl", OrdersCtrl);
+   }).call(this);
+
+   (function() {
+      /* @ngInject */
       function ApiConfig() {}
       /* @ngInject */
       function ApiRun($rootScope) {}
       ApiRun.$inject = ['$rootScope'];
-      var dependencies = [];
+      var dependencies = [ "esis.angular-course" ];
       angular.module("esis.angular-course.api", dependencies).config(ApiConfig).run(ApiRun);
    }).call(this);
 

@@ -37,6 +37,7 @@
     'esis.angular-course.ui',
     'esis.angular-course.errors',
     'esis.angular-course.users',
+    'esis.angular-course.store',
     'esis.angular-course.api',
     'ui.router',
     'hitmands.auth',

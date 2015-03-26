@@ -13,7 +13,8 @@
    
    
   var dependencies = [
-    'hitmands.auth'
+    'hitmands.auth',
+    'esis.angular-course'
   ];
 
   var esisAngularCourseUsersConstant = {};

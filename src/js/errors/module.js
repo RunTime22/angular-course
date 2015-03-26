@@ -29,7 +29,7 @@
    
    
   var dependencies = [
-    
+    'esis.angular-course'
   ];
   
   angular
