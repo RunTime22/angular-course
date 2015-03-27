@@ -1,3 +1,18 @@
+/**!
+ * @Project: angular-course
+ * @Authors: Hitmands <gius.mand.developer@gmail.com>
+ * @Link: https://github.com/EsisSrL/angular-course
+ * @License: MIT
+ * @Date: 2015-03-27
+ * @Version: 1.0.0
+ * 
+ * @ngdoc: module
+ * @namespace: esis
+ * @name: angular-course
+ * @module: esis.angular-course
+ * @description: Course on AngularJS.
+***/
+
 (function(window, angular) {
    'use strict';
 

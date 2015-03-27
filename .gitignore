@@ -27,7 +27,6 @@ dump.rdb
 /bower_components/
 /src/vendor
 /sample
-/server.js
 
 backend/modules/users/data/**
 !backend/modules/users/data/hitmands.json
